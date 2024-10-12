@@ -7,7 +7,7 @@ range without loss of precision.
 In the `src/` directory compile and run the demo,
 manually entering three numbers to be added.
 
-(assumes `g++`; see `makefile` for other options)
+(assumes `g++`; see `common/makefile` for other options)
 ```
 make
 ./virtreg
