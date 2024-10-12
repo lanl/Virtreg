@@ -6,8 +6,10 @@ range without loss of precision.
 # Example
 In the `src/` directory compile and run the demo,
 manually entering three numbers to be added.
+
+(assumes `g++`; see `makefile` for other options)
 ```
-make  # assumes g++ is available
+make
 ./virtreg
 Enter double 1: 5
 Enter double 2: 1e-90
@@ -22,7 +24,7 @@ Virtual register sum: 1e-90
 # Testing
 In the `src/` directory compile and run the tests.
 ```
-make tests  # assumes g++ is available
+make tests
 ./tests
 ```
 
