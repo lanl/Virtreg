@@ -1,5 +1,5 @@
 # Virtreg (Virtual register)
-** Virtreg** (LANL code number O4799) is a C++ code designed to perform
+**Virtreg** (LANL code number O4799) is a C++ code designed to perform
 additions and subtractions of floating-point numbers over a wide dynamic
 range without loss of precision.
 
