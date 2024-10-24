@@ -217,6 +217,27 @@ ifeq ($(comp),cray)
 endif
 
 
+# Nvidia compiler
+ifeq ($(comp),nvidia)
+    CXX = nvc++
+
+    ifeq ($(opt),yes)
+        OPTIONS += -O3
+    else
+        OPTIONS += -g -O0 -Wall -pedantic
+    endif
+
+    ifeq ($(omp),yes)
+        OPTIONS += -fopenmp
+    endif
+
+    ifeq ($(simd),yes)
+        OPTIONS += -DSIMD -fopenmp
+    endif
+
+endif
+
+
 # Extensive warnings with GNU compiler
 ifeq ($(comp),full)
     CXX = g++
