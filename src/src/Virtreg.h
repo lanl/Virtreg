@@ -158,6 +158,7 @@ private:
 
 // ----------- End class Virtreg -------------
 
-std::ostream& operator << (std::ostream& ost, const Virtreg& o);
+/// Insert Virtreg into output stream
+std::ostream& operator<<(std::ostream& ost, const Virtreg& o);
 
 #endif  // VIRTREG_H_

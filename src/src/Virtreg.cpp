@@ -320,7 +320,7 @@ bool Virtreg::arebNumBits0() const
 
 // ----------- End class Virtreg -------------
 
-std::ostream& operator << (std::ostream& ost, const Virtreg& o)
+std::ostream& operator<<(std::ostream& ost, const Virtreg& o)
 {
     ost << o.getValue();
     return ost;
