@@ -6,7 +6,7 @@
  * @author Peter Hakel
  * @version 0.0
  * @date Created in 2013\n
- * Last modified on 10 October 2024
+ * Last modified on 23 October 2024
  * @copyright (c) 2024, Triad National Security, LLC.
  * All rights reserved.\n
  * Use of this source code is governed by the BSD 3-Clause License.
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
     reg += a;
     if (showbits) reg.printB();
     std::cout << "Floating point sum: " << s << std::endl;
-    std::cout << "Virtual register sum: " << reg.getValue() << std::endl;
+    std::cout << "Virtual register sum: " << reg << std::endl;
     
     return EXIT_SUCCESS;
 }

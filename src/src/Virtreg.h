@@ -7,7 +7,7 @@
  * @author Peter Hakel
  * @version 0.0
  * @date Created in 2013\n
- * Last modified on 10 October 2024
+ * Last modified on 23 October 2024
  * @copyright (c) 2024, Triad National Security, LLC.
  * All rights reserved.\n
  * Use of this source code is governed by the BSD 3-Clause License.
@@ -29,6 +29,7 @@ and to permit others to do so.
 
 #include <bitset>
 #include <vector>
+#include <ostream>
 
 // -------------------------------------------
 
@@ -156,5 +157,7 @@ private:
 };
 
 // ----------- End class Virtreg -------------
+
+std::ostream& operator << (std::ostream& ost, const Virtreg& o);
 
 #endif  // VIRTREG_H_
