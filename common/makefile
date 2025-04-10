@@ -32,6 +32,9 @@ MAKE = make
 # "remove" command
 RM = rm -rf
 
+# "sed" command
+SED = sed -e
+
 # Windows specifics
 ifeq ($(OS),Windows_NT)
     MAKE = C:\MinGW\bin\mingw32-make
@@ -135,7 +138,7 @@ ifeq ($(comp),intel)
     ifeq ($(opt),yes)
         OPTIONS += -O3 # -fast
     else
-        OPTIONS += -g -O0 -Wall
+        OPTIONS += -g -O0 -Wall -fsanitize=address
     endif
 
     ifeq ($(mpi),yes)
@@ -278,16 +281,16 @@ endif
 
 # =============== Variables for paths and file names ===========
 
-BUILDIR  =   ./build
+BUILDIR  =   build
 
 PROGRAM  =   $(patsubst %_main.cpp,%,$(wildcard *_main.cpp))
-PSRCLOC  =   ./src
+PSRCLOC  =   src
 PROGSRC  =   $(PROGRAM)_main.cpp
 PROGOBJ  =   $(BUILDIR)/$(PROGRAM)_main.o
 PROGLIB  =   lib$(PROGRAM).a
 PROGEXE  =   $(PROGRAM)
 
-TESTLOC  =   ./UniTest
+TESTLOC  =   UniTest
 TESTSRC  =   $(UNITEST)/tests.cpp
 TESTOBJ  =   $(BUILDIR)/tests.o
 TESTLIB  =   libtest$(PROGRAM).a
@@ -342,7 +345,12 @@ $(TESTEXE) : $(TESTOBJ) $(TESTLIB) $(PROGLIB)
 
 # =============== Rules for the unit-test sources ==============
 
-$(TESTOBJ) : $(TESTSRC) $(TESTLOC)/tests_headers.inc $(TESTLOC)/tests_runs.inc
+$(TESTOBJ) : $(TESTSRC)
+	@$(RM) $(TESTLOC)/tests_headers.inc $(TESTLOC)/tests_runs.inc
+	@for i in $(TESTLOC)/*.cpp; do \
+	echo $$i | $(SED) 's/\.cpp/(int\&, int\&);/' | $(SED) 's/$(TESTLOC)\//void /' >> $(TESTLOC)/tests_headers.inc; \
+	echo $$i | $(SED) 's/\.cpp/(failed_test_count, disabled_test_count);/' | $(SED) 's/$(TESTLOC)\///' >> $(TESTLOC)/tests_runs.inc; \
+	done
 	@echo
 	$(CXX) $(OPTIONS) -I$(UNITEST) -I$(TESTLOC) -o $@ -c $(TESTSRC)
 
@@ -390,4 +398,5 @@ clean_exe :
 clean_all :
 	@$(MAKE) clean
 	@$(MAKE) clean_exe
+	@$(RM) $(TESTLOC)/tests_headers.inc $(TESTLOC)/tests_runs.inc
 

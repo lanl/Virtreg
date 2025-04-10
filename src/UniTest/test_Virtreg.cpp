@@ -4,14 +4,14 @@ test_Virtreg.cpp
 Definitions for unit, integration, and regression tests for class Virtreg.
 
 Created on 23 September 2023
-Last modified on 30 September 2023
+Last modified on 10 April 2025
 
 =============================================================================*/
 
 //  Note: only use trimmed strings for names
 
-#include <test_Virtreg.h>
 #include <Test.h>
+#include <Virtreg.h>
 
 void test_Virtreg(int &failed_test_count, int &disabled_test_count)
 {
