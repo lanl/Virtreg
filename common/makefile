@@ -64,7 +64,43 @@ endif
 
 
 # GNU compiler via HomeBrew
-ifeq ($(comp),brew)
+ifeq ($(comp),brew12)
+    CXX = g++-12
+
+    ifeq ($(opt),yes)
+        OPTIONS += -O3
+    else
+        OPTIONS += -g -O0 -Wall -pedantic
+    endif
+
+    ifeq ($(omp),yes)
+        OPTIONS += -fopenmp
+    endif
+
+    ifeq ($(simd),yes)
+        OPTIONS += -DSIMD -fopenmp
+    endif
+
+endif
+ifeq ($(comp),brew13)
+    CXX = g++-13
+
+    ifeq ($(opt),yes)
+        OPTIONS += -O3
+    else
+        OPTIONS += -g -O0 -Wall -pedantic
+    endif
+
+    ifeq ($(omp),yes)
+        OPTIONS += -fopenmp
+    endif
+
+    ifeq ($(simd),yes)
+        OPTIONS += -DSIMD -fopenmp
+    endif
+
+endif
+ifeq ($(comp),brew14)
     CXX = g++-14
 
     ifeq ($(opt),yes)
@@ -82,6 +118,25 @@ ifeq ($(comp),brew)
     endif
 
 endif
+ifeq ($(comp),brew15)
+    CXX = g++-15
+
+    ifeq ($(opt),yes)
+        OPTIONS += -O3
+    else
+        OPTIONS += -g -O0 -Wall -pedantic
+    endif
+
+    ifeq ($(omp),yes)
+        OPTIONS += -fopenmp
+    endif
+
+    ifeq ($(simd),yes)
+        OPTIONS += -DSIMD -fopenmp
+    endif
+
+endif
+
 
 
 # Clang compiler
